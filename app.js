@@ -5,21 +5,7 @@ var config = require('./config/config');
 
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-io.on('connection', function(socket) {
-  console.log("A User Connected");
-
-  socket.on('chat message', function(msg) {
-    io.emit('chat message', msg);
-  });
-
-  socket.on('disconnect', function() {
-    console.log("A User Disconnected");
-  });
-
-});
-
+var io = require('./lib/sockets.js').listen(http);
 
 http.listen(config.app.port);
 
