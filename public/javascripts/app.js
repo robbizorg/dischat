@@ -45,6 +45,7 @@ app.factory('socket', function($rootScope) {
 			socket.emit(eventName, data, function() {
 				var args = arguments;
 				$rootScope.$apply(function() {
+					console.log(callback);
 					if (callback) {
 						callback(socket, args);
 					}
